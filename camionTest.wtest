@@ -1,9 +1,24 @@
 import camion.*
+import cosas.*
 
 describe "group of test for camion" {
 
-  test "first test" {
-    assert.that(true)
+  test "El camión puede circular en ruta si lleva a bumblebee sin tranformar y el nivel de peligrosidad máximo es 20"{
+    camion.cargar(bumblebee)
+    assert.that(camion.puedeCircularEnRuta(20))
+  }
+  test "El camión no puede circular en ruta si lleva un paquete con 1001 ladrillos y a Knight Rider, aún si la peligrosidad límite sea 100"{
+    paqueteLadrillos.cantLadrillos(1001)
+    camion.cargar(paqueteLadrillos)
+    camion.cargar(knightRider)
+    assert.notThat(camion.puedeCircularEnRuta(100))
+  }
+  test "Si el camión lleva al Knigh Rider, un paquete con 5 ladrillos y un contenedor vacío, todo lo contenido tiene peso par"{
+    paqueteLadrillos.cantLadrillos(5)
+    camion.cargar(paqueteLadrillos)
+    camion.cargar(knightRider)
+    camion.cargar(contenedorPortuario)
+    assert.that(camion.todoPesaPar())
   }
 
 }
