@@ -18,6 +18,10 @@ object paqueteLadrillos{
     method peso() = 2 * cantLadrillos
     method peligrosidad() = 2
 }
+object arenaGranel{
+    var property peso = 10
+    method peligrosidad() = 1
+}
 object bateriaAntiaerea{
     var tieneMisiles = false
 
@@ -35,14 +39,14 @@ object contenedorPortuario{
     const cosas = []
 
     method peso() = 100 + cosas.sum({c => c.peso()})
-    method peligrosidad() = if (cosas.isEmpty()) 0 else self.peligrosidadMasAlta()
-    method peligrosidadMasAlta() = cosas.max({cosas.peligrosidad()})
+    method peligrosidad() = if (cosas.isEmpty()) 0 else self.cosaConPeligrosidadMasAlta().peligrosidad()
+    method cosaConPeligrosidadMasAlta() = cosas.max({c => c.peligrosidad()})
     // method peligrosidadDeLasCosas() = cosas.map({c => c.peligrosidad()})
 
-    method agregar(cosa){
+    method cargar(cosa){
         cosas.add(cosa)
     }
-    method sacar(cosa){
+    method descargar(cosa){
         cosas.remove(cosa)
     }
 }
@@ -51,8 +55,8 @@ object residuosRadioactivos{
     method peligrosidad() = 200
 }
 object embalaje{
-    var property cosa = residuosRadioactivos
+    var property cosaEmbalada = residuosRadioactivos
 
-    method peso() = cosa.peso()
-    method peligrosidad() = cosa.peligrosidad()/2
+    method peso() = cosaEmbalada.peso()
+    method peligrosidad() = cosaEmbalada.peligrosidad()/2
 }

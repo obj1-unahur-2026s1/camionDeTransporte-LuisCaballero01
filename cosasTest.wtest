@@ -2,8 +2,39 @@ import cosas.*
 
 describe "group of test for cosas" {
 
-  test "first test" {
-    assert.that(true)
+  test "Si en el paquete de ladrillos hay 10, su peso ahora es 20" {
+    paqueteLadrillos.cantLadrillos(10)
+    assert.equals(20, paqueteLadrillos.peso())
   }
+  test "La batería antiaérea carga los misiles y ahora pesa 300 y su peligrosidad es 100"{
+    bateriaAntiaerea.cargarMisiles()
+    assert.equals(300, bateriaAntiaerea.peso())
+    assert.equals(100, bateriaAntiaerea.peligrosidad())
+  }
+  test "La batería antiaérea descarga los misiles y ahora pesa 200 y su peligrosidad es 0"{
+    bateriaAntiaerea.descargarMisiles()
+    assert.equals(200, bateriaAntiaerea.peso())
+    assert.equals(0, bateriaAntiaerea.peligrosidad())
+  }
+  test "El contenedor vacío pesa 100 con peligrosidad 0"{
+    assert.equals(100, contenedorPortuario.peso())
+    assert.equals(0, contenedorPortuario.peligrosidad())
+  }
+  test "El embalaje contiene los residuos radioactivos que pesen 30 kilos y ahora su peso es 30 y su peligrosidad es 100"{
+    residuosRadioactivos.peso(30)
+    embalaje.cosaEmbalada(residuosRadioactivos)
 
+    assert.equals(30, embalaje.peso())
+    assert.equals(100, embalaje.peligrosidad())
+  }
+  test "El contenedor se le agregan un paquete de ladrillos con 15 ladrillos, un bumblebee transformado en robot, y un knight rider, y su peso es 1430 y su peligrosidad es 30"{
+    contenedorPortuario.cargar(paqueteLadrillos)
+    contenedorPortuario.cargar(bumblebee)
+    contenedorPortuario.cargar(knightRider)
+    bumblebee.transformarse()
+    paqueteLadrillos.cantLadrillos(15)
+
+    assert.equals(1430, contenedorPortuario.peso())
+    assert.equals(30, contenedorPortuario.peligrosidad())
+  }
 }

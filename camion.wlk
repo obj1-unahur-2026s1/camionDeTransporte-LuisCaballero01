@@ -10,7 +10,8 @@ object camion {
     method cosasMasPeligrosasQue(unaCosa) = cosas.filter({c => c.peligrosidad() > unaCosa.peligrosidad()})
     method estaExcedidoEnPeso() = self.peso() > 2500
     method puedeCircularEnRuta(nivelPeligrosidadMaximo) = !self.estaExcedidoEnPeso().and(self.cosasQueSuperenPeligrosidad(nivelPeligrosidadMaximo).isEmpty())
-
+    method algunaCosaEntre(min, max) = cosas.any({c => c.peso().between(min, max)})
+    method cosaMasPesada() = cosas.max({c => c.peso()})
 
     method cargar(cosa){
         cosas.add(cosa)
