@@ -1,0 +1,25 @@
+import camion2.*
+import cosas2.*
+
+describe "Tests de camión" {
+  test "Si el camión carga a bumblebee y a la batería antiaérea ahora tiene 4 bultos" {
+    camion.cargar(bumblebee)
+    camion.cargar(bateriaAntiaerea)
+    assert.equals(4, camion.cantBultos())
+  }
+  test "Si el camión carga la bateria antiaérea, ésta ahora tiene los misiles cargados"{
+    camion.cargar(bateriaAntiaerea)
+    assert.that(bateriaAntiaerea.tieneMisiles())
+  }
+  test "Si el camión carga un contenedor que contiene a todas las cosas, la cantidad de bultos es 11"{
+    contenedorPortuario.cargar(arenaGranel)
+    contenedorPortuario.cargar(bateriaAntiaerea)
+    contenedorPortuario.cargar(bumblebee)
+    contenedorPortuario.cargar(embalaje)
+    contenedorPortuario.cargar(knightRider)
+    contenedorPortuario.cargar(paqueteLadrillos)
+    contenedorPortuario.cargar(residuosRadioactivos)
+    camion.cargar(contenedorPortuario)
+    assert.equals(11, camion.cantBultos())
+  }
+}
